@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Add Money to Wallet</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" required>
+        <button type="submit">Add Money</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>User Profile</h2>
+    
+    <!-- Display User Information -->
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    
+    {% if user.phone_number %}
+        <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+    {% endif %}
+    
+    <p><strong>Joined on:</strong> {{ user.date_joined }}</p>
+
+    <hr>
+    
+    <!-- Link to Edit Profile (optional) -->
+    <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+{% endblock %}
