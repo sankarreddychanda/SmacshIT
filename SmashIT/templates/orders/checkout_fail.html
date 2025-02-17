@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Checkout Failed</h2>
+<p>{{ message }}</p>
+<a href="{% url 'wallet' %}">Add Money to Wallet</a>
+{% endblock %}

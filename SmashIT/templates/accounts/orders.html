@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>My Orders</h2>
+
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    <h3>Order #{{ order.id }} - Status: {{ order.status }}</h3>
+                    <p><strong>Date:</strong> {{ order.created_at }}</p>
+                    <p><strong>Total Amount:</strong> ${{ order.total_amount }}</p>
+                    <ul>
+                        {% for item in order.items.all %}
+                            <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.price }}</li>
+                        {% endfor %}
+                    </ul>
+                    <!-- Add View Order link to view detailed order -->
+                    <a href="{% url 'order_detail' order.id %}" class="btn">View Order</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no orders yet.</p>
+    {% endif %}
+{% endblock %}
