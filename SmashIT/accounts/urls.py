@@ -12,8 +12,7 @@ urlpatterns = [
     path('wallet/add/', add_money, name='add_money'),  # Add money to wallet
 
     # Orders
-    path('orders/', orders_view, name='orders'), 
-     # View orders
+    path('orders/', orders_view, name='orders'),  # View orders
 
     # User Profile (Optional)
     path('profile/', profile_view, name='profile'),  # User profile page
