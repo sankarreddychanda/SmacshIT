@@ -167,3 +167,66 @@ footer {
 .btn:hover {
     background-color: #2980b9;
 }
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-left a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-right {
+    margin-left: auto; /* Pushes profile to the right */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.username {
+    font-weight: bold;
+    color: white;
+}
+

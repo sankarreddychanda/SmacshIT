@@ -39,8 +39,8 @@ def view_cart(request):
         "total_amount": total_amount,
         "wallet_balance": wallet_balance,
     })
-
 # Add item to Cart
+@login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart, created = Cart.objects.get_or_create(user=request.user)
