@@ -37,10 +37,11 @@ def place_order(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
 
     # Calculate the total amount in the cart
-    total_amount = cart.total_amount()
-
+    total_amount = cart.get_total_amount()  # Use get_total_amount() method
+    wallet_balance = (Wallet.objects.get(user=request.user))
+    wallet_balance = Decimal(wallet_balance.balance)
     # Check if the user has enough wallet balance
-    if request.user.wallet_balance >= total_amount:
+    if wallet_balance >= total_amount:
         # Deduct the amount from the user's wallet
         request.user.wallet_balance -= total_amount
         request.user.save()

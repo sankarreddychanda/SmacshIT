@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
+
+from accounts.models import Wallet
 from .models import Cart, CartItem
 from products.models import Product
 
@@ -28,7 +30,9 @@ def view_cart(request):
     total_amount = Decimal(sum(item.get_total_price() for item in cart_items))
 
     # Get the user's wallet balance (convert to Decimal)
-    wallet_balance = Decimal(request.user.wallet_balance)
+    wallet_balance = (Wallet.objects.get(user=request.user))
+    wallet_balance=Decimal(wallet_balance.balance)
+    print("wallet_balance",wallet_balance,total_amount)
 
     return render(request, "cart/cart.html", {
         "cart_items": cart_items,
