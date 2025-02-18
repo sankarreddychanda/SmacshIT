@@ -31,20 +31,26 @@ def view_orders(request):
     return render(request, "orders/orders.html", {"orders": orders})
 
 
+from decimal import Decimal
+from django.shortcuts import redirect, get_object_or_404
 @login_required
+
 def place_order(request):
     # Get the user's cart
     cart, created = Cart.objects.get_or_create(user=request.user)
 
     # Calculate the total amount in the cart
-    total_amount = cart.get_total_amount()  # Use get_total_amount() method
-    wallet_balance = (Wallet.objects.get(user=request.user))
-    wallet_balance = Decimal(wallet_balance.balance)
+    total_amount = cart.get_total_amount()  # Ensure this method returns Decimal
+    total_amount = Decimal(total_amount)
+
+    # Get the user's wallet
+    wallet = get_object_or_404(Wallet, user=request.user)
+
     # Check if the user has enough wallet balance
-    if wallet_balance >= total_amount:
-        # Deduct the amount from the user's wallet
-        request.user.wallet_balance -= total_amount
-        request.user.save()
+    if wallet.balance >= total_amount:
+        # Deduct the amount from the wallet
+        wallet.balance -= total_amount
+        wallet.save()  # Save the updated wallet balance
 
         # Create a new order
         order = Order.objects.create(user=request.user, total_amount=total_amount, status="Pending")
